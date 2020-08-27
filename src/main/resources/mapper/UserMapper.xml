@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdfg.wxmall.dao.UserDao">
+
+    <select id="registerUser" parameterType="java.util.Map" statementType="CALLABLE" resultType="java.util.Map">
+		{CALL cdfwxmalldb.P_REPSHOPMALL_REGISTER
+		(#{openId,mode=IN,jdbcType=VARCHAR},
+		 #{nickName,mode=IN,jdbcType=VARCHAR},
+		 #{iSex,mode=IN,jdbcType=VARCHAR},
+		 #{avatarUrl,mode=IN,jdbcType=VARCHAR},
+		 #{ret_flag,mode=OUT,jdbcType=VARCHAR}
+		)}
+	</select>
+
+    <select id="login" statementType="CALLABLE" resultType="java.util.Map">
+		{CALL cdfwxmalldb.P_REPSHOPMALL_WECHAT
+		(#{open_id,mode=IN,jdbcType=VARCHAR},
+		 #{ret_flag,mode=OUT,jdbcType=VARCHAR},
+		 #{nickName,mode=OUT,jdbcType=VARCHAR},
+		 #{avatarUrl,mode=OUT,jdbcType=VARCHAR}
+		)}
+	</select>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cdfg.wxmall.dao.CartDao">
+
+    <resultMap id="userCollectionDto" type="com.cdfg.wxmall.pojo.dto.CartDto">
+        <result property="proPrice" column="pro_price"/>
+        <result property="proAmount" column="pro_amount"/>
+    </resultMap>
+
+    <select id="cart" resultMap="userCollectionDto">
+    select
+        uc.pro_price,
+        uc.pro_amount
+   from
+        product uc
+  where uc.pro_id = #{proId}
+    and uc.status = '11'
+    </select>
+
+</mapper>
